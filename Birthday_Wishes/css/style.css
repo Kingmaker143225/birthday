@@ -174,7 +174,7 @@ body {
 
     background:
         #fef9fb
-        url("../assets/gallery/gallery-1.jpeg")
+        url("../assets/gallery/home-bg.jpg")
         center center
         no-repeat;
 
@@ -509,7 +509,7 @@ body {
             rgba(255,255,255,0.40),
             rgba(255,255,255,0.15)
         ),
-        url("../assets/gallery/gallery-1.jpeg");
+        url("../assets/gallery/home-bg.jpg");
 
     background-size: cover;
 
@@ -2868,4 +2868,21 @@ img.loaded {
 
         font-size: .72rem;
     }
+}
+
+
+.center-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.center-image img {
+    width: 620px;
+    height: 820px;
+    object-fit: cover;
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
 }
