@@ -174,7 +174,7 @@ body {
 
     background:
         #fef9fb
-        url("../assets/gallery/gallery-13.png")
+        url("../assets/gallery/gallery-1.jpeg")
         center center
         no-repeat;
 
@@ -509,7 +509,7 @@ body {
             rgba(255,255,255,0.40),
             rgba(255,255,255,0.15)
         ),
-        url("../assets/gallery/gallery-11.jpg");
+        url("../assets/gallery/gallery-1.jpeg");
 
     background-size: cover;
 
