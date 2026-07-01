@@ -1,0 +1,2871 @@
+/* =========================================================
+   VERSION 3
+   PREMIUM BIRTHDAY WEBSITE
+   PART 1
+   GLOBAL + LOADER + NAVBAR + HERO
+========================================================= */
+
+/* =========================================================
+   GOOGLE FONT VARIABLES
+========================================================= */
+
+:root {
+
+    --gold: #c89b3c;
+    --gold-light: #f4d88b;
+
+    --rose: #f7c4d6;
+    --pink: #f6d2df;
+
+    --white: #ffffff;
+
+    --text-dark: #2f2f2f;
+    --text-light: #6d6d6d;
+
+    --bg-main: #fffaf7;
+    --bg-soft: #fff4f8;
+
+    --shadow:
+        0 15px 40px rgba(0, 0, 0, 0.08);
+
+    --radius: 24px;
+
+    --transition: 0.35s ease;
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+html {
+
+    scroll-behavior: smooth;
+}
+
+body {
+
+    font-family: "Poppins", sans-serif;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fffaf7 0%,
+            #fff7fb 100%
+        );
+
+    color: var(--text-dark);
+
+    overflow-x: hidden;
+
+    min-height: 100vh;
+
+    position: relative;
+}
+
+/* =========================================================
+   CUSTOM SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+
+    background: #f4f4f4;
+}
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        linear-gradient(
+            var(--gold),
+            var(--rose)
+        );
+
+    border-radius: 100px;
+}
+
+/* =========================================================
+   GLOBAL CONTAINER
+========================================================= */
+
+.container {
+
+    width: min(1200px, 92%);
+    margin: auto;
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title {
+
+    text-align: center;
+
+    margin-bottom: 80px;
+}
+
+.section-title span {
+
+    display: inline-block;
+
+    color: var(--gold);
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 12px;
+}
+
+.section-title h2 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(
+            2.8rem,
+            5vw,
+            4.5rem
+        );
+
+    font-weight: 700;
+
+    margin-bottom: 16px;
+}
+
+.section-title p {
+
+    max-width: 700px;
+
+    margin: auto;
+
+    color: var(--text-light);
+
+    line-height: 1.8;
+}
+
+/* =========================================================
+   PREMIUM IMAGE LOADER
+========================================================= */
+
+#loader {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    background:
+        #fef9fb
+        url("../assets/gallery/gallery-13.png")
+        center center
+        no-repeat;
+
+    /* Desktop & Laptop */
+
+    background-size: cover;
+
+    background-position: center top;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-end;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+}
+
+.loader-overlay {
+
+    width: 100%;
+
+    padding-bottom: 50px;
+
+    text-align: center;
+}
+
+.loader-progress {
+
+    width: min(400px, 80%);
+
+    height: 8px;
+
+    background:
+        rgba(255,255,255,.6);
+
+    border-radius: 50px;
+
+    margin: auto;
+
+    overflow: hidden;
+
+    backdrop-filter:
+        blur(10px);
+}
+
+#loaderBar {
+
+    width: 0%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d4af37,
+            #f4d88b
+        );
+
+    border-radius: 50px;
+
+    transition: width .3s ease;
+}
+
+#loaderText {
+
+    margin-top: 15px;
+
+    color: #355d9d;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE LOADER
+========================================================= */
+
+@media (max-width: 768px) {
+
+    #loader {
+
+        background-size: contain;
+
+        background-position: center center;
+
+        background-repeat: no-repeat;
+    }
+
+    .loader-overlay {
+
+        padding-bottom: 30px;
+    }
+
+    .loader-progress {
+
+        width: 85%;
+    }
+
+    #loaderText {
+
+        font-size: .9rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    #loader {
+
+        background-size: contain;
+
+        background-position: center center;
+    }
+
+    .loader-progress {
+
+        width: 90%;
+    }
+
+    #loaderText {
+
+        font-size: .85rem;
+    }
+}
+
+/* =========================================================
+   DECORATIVE RIBBONS
+========================================================= */
+
+.floating-ribbon {
+
+    position: fixed;
+
+    width: 260px;
+
+    z-index: 20;
+
+    opacity: 1;
+
+    pointer-events: none;
+}
+
+.ribbon-left {
+
+    top: 85px;
+    left: 0px;
+}
+
+.ribbon-right {
+
+    top: 85px;
+    right: 0px;
+
+    transform: scaleX(-1);
+}
+
+@media (max-width: 768px) {
+
+    .floating-ribbon {
+
+        width: 90px;
+
+        opacity: .6;
+    }
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 25px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width:
+        min(1200px, 94%);
+
+    height: 80px;
+
+    padding: 0 35px;
+
+    background:
+        rgba(255, 255, 255, 0.85);
+
+    backdrop-filter:
+        blur(20px);
+
+    border:
+        1px solid rgba(255,255,255,0.4);
+
+    border-radius: 100px;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: var(--shadow);
+
+    z-index: 999;
+}
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.logo img {
+
+    width: 42px;
+
+    height: 42px;
+
+    object-fit: contain;
+}
+
+.logo span {
+
+    font-size: 1.3rem;
+
+    font-weight: 700;
+
+    color: var(--gold);
+}
+
+.nav-links {
+
+    display: flex;
+
+    list-style: none;
+
+    gap: 35px;
+}
+
+.nav-links a {
+
+    text-decoration: none;
+
+    color: var(--text-dark);
+
+    font-weight: 500;
+
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+
+    color: var(--gold);
+}
+
+.music-btn {
+
+    width: 50px;
+    height: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--rose)
+        );
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.music-btn:hover {
+
+    transform:
+        scale(1.08);
+}
+
+.music-btn img {
+
+    width: 28px;
+
+    height: 28px;
+
+    object-fit: contain;
+}
+
+/* =========================================================
+   HERO SECTION
+========================================================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    padding:
+        140px 6% 80px;
+}
+
+/* =========================================================
+   HERO BACKGROUND
+========================================================= */
+
+.hero-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,0.40),
+            rgba(255,255,255,0.15)
+        ),
+        url("../assets/gallery/gallery-11.jpg");
+
+    background-size: cover;
+
+    background-position: center 15%;
+
+    transform: scale(1.1);
+
+    z-index: -3;
+}
+
+@media (max-width: 768px) {
+
+    .hero-background {
+
+        background-size: cover;
+
+        background-position: center top;
+
+        transform: none;
+    }
+}
+
+/* =========================================================
+   FLOATING STARS
+========================================================= */
+
+.stars {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -2;
+
+    pointer-events: none;
+}
+
+.stars::before,
+.stars::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        radial-gradient(
+            rgba(255,255,255,0.8) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        80px 80px;
+
+    opacity: .35;
+}
+@media (max-width: 768px) {
+
+    .stars::before,
+    .stars::after {
+
+        background-size:
+            50px 50px;
+
+        opacity: .25;
+    }
+}
+
+/* =========================================================
+   HERO LAYOUT
+========================================================= */
+
+.hero-container {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        1.1fr 1fr;
+
+    align-items: center;
+
+    gap: 80px;
+}
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content {
+
+    max-width: 650px;
+
+    margin-left: 140px;
+
+    padding-top: 40px;
+
+    position: relative;
+
+    z-index: 10;
+}
+
+.hero-tag {
+
+    display: inline-block;
+
+    padding:
+        12px 22px;
+
+    border-radius: 100px;
+
+    background:
+        rgba(255,255,255,0.75);
+
+    color: var(--gold);
+
+    font-weight: 600;
+
+    margin-bottom: 25px;
+
+    backdrop-filter:
+        blur(10px);
+}
+
+.hero-content h1 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(
+            4rem,
+            8vw,
+            7rem
+        );
+
+    line-height: .95;
+
+    max-width: 600px;
+}
+
+.hero-content h1 span {
+
+    display: block;
+
+    color: var(--gold);
+
+    margin-top: 10px;
+}
+
+.hero-content p {
+
+    margin-top: 20px;
+
+    font-size: 1.5rem;
+
+    font-weight: 600;
+
+    color: #b5832f;
+}
+
+
+.hero-content h3 {
+
+    font-size: 1.2rem;
+
+    line-height: 1.8;
+
+    max-width: 600px;
+
+    color: var(--text-light);
+
+    margin-bottom: 35px;
+}
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
+
+.hero-buttons {
+
+    display: flex;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+
+    padding:
+        16px 30px;
+
+    border-radius: 100px;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: var(--transition);
+}
+
+.btn-primary {
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            #e2b95f
+        );
+}
+
+.btn-secondary {
+
+    color: var(--text-dark);
+
+    background:
+        rgba(255,255,255,0.8);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+
+    transform:
+        translateY(-4px);
+}
+
+/* =========================================================
+   HERO IMAGE
+========================================================= */
+
+.hero-image {
+
+    position: relative;
+}
+
+.image-glow {
+
+    position: absolute;
+
+    inset: -20px;
+
+    background:
+        radial-gradient(
+            rgba(244,216,139,.5),
+            transparent 70%
+        );
+
+    z-index: -1;
+}
+
+.hero-image img {
+
+    width: 100%;
+
+    border-radius: 35px;
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.15);
+}
+
+/* =========================================================
+   HERO CAKE
+========================================================= */
+
+.hero-cake {
+
+    position: absolute;
+
+    bottom: -10px;
+
+    left: -10px;
+
+    width: 280px;
+
+    animation:
+        cakeFloat 5s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+
+    .hero-cake {
+
+        display: none;
+    }
+}
+
+/* =========================================================
+   HERO BALLOONS
+========================================================= */
+
+.hero-balloons {
+
+    position: absolute;
+
+    top: 800px;
+    nav-right: -40px;
+
+    width: 400px;
+
+    animation:
+        balloonFloat 6s ease-in-out infinite;
+}
+
+@keyframes balloonFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+    }
+
+    50% {
+
+        transform:
+            translateY(-30px);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 768px) {
+
+    #loader {
+
+        background-size: contain;
+    }
+
+    .loader-overlay {
+
+        padding-bottom: 30px;
+    }
+
+    #loaderText {
+
+        font-size: .9rem;
+    }
+
+    .loader-progress {
+
+        width: 85%;
+    }
+}
+
+
+@media (max-width: 992px) {
+
+    .hero-container {
+
+        grid-template-columns: 1fr;
+
+        text-align: center;
+    }
+
+
+    .hero-buttons {
+
+        justify-content: center;
+    }
+
+    .hero-cake {
+
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .nav-links {
+
+        display: none;
+    }
+
+    .hero {
+
+        padding-top: 180px;
+    }
+
+    .hero-balloons {
+
+        width: 100px;
+    }
+
+    .floating-ribbon {
+
+        width: 140px;
+    }
+}
+/* =========================================================
+   VERSION 3
+   PART 2
+   ABOUT + GALLERY + MEMORIES + WISHES
+========================================================= */
+
+/* =========================================================
+   ABOUT SECTION
+========================================================= */
+
+.about {
+
+    padding: 140px 6%;
+}
+
+.about-container {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+.about-image {
+
+    position: relative;
+}
+
+.about-image::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -20px;
+
+    border-radius: 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(200,155,60,.15),
+            rgba(247,196,214,.15)
+        );
+
+    z-index: -1;
+}
+
+.about-image img {
+
+    width: 100%;
+
+    border-radius: 30px;
+
+    display: block;
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.12);
+}
+
+.about-content h3 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(
+            3rem,
+            5vw,
+            4.5rem
+        );
+
+    color: var(--gold);
+
+    margin-bottom: 20px;
+}
+
+.about-content p {
+
+    font-size: 1.05rem;
+
+    line-height: 1.9;
+
+    color: var(--text-light);
+
+    margin-bottom: 20px;
+}
+
+/* =========================================================
+   GALLERY SECTION
+========================================================= */
+
+.gallery-section {
+
+    padding: 120px 6%;
+}
+
+.gallery-grid {
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.gallery-card {
+
+    background: #fff;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.08);
+
+    transition:
+        transform .3s ease;
+}
+
+.gallery-card:hover {
+
+    transform:
+        translateY(-8px);
+}
+
+.gallery-img {
+
+    width: 100%;
+
+    height: auto;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+.gallery-overlay {
+
+    padding: 15px;
+
+    text-align: center;
+
+    background: white;
+}
+
+.gallery-overlay h3 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 1.5rem;
+
+    color: #333;
+}
+
+/* =========================================================
+   MEMORIES SECTION
+========================================================= */
+
+.memories-section {
+
+    padding: 140px 6%;
+
+    position: relative;
+}
+
+.memories-container {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 30px;
+}
+
+.memory-card {
+
+    background:
+        rgba(255,255,255,.75);
+
+    backdrop-filter:
+        blur(10px);
+
+    border:
+        1px solid rgba(255,255,255,.5);
+
+    border-radius: 30px;
+
+    padding: 45px 35px;
+
+    text-align: center;
+
+    transition: .4s ease;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.06);
+}
+
+.memory-card:hover {
+
+    transform:
+        translateY(-10px);
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.10);
+}
+
+.memory-icon {
+
+    width: 90px;
+    height: 90px;
+
+    margin: 0 auto 25px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(244,216,139,.25),
+            rgba(247,196,214,.25)
+        );
+}
+
+.memory-icon img {
+
+    width: 200px;
+}
+
+.memory-card h3 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 2rem;
+
+    margin-bottom: 15px;
+
+    color: var(--gold);
+}
+
+.memory-card p {
+
+    line-height: 1.8;
+
+    color: var(--text-light);
+}
+
+.memories-decoration {
+
+    position: absolute;
+
+    right: 0;
+    bottom: 30px;
+
+    opacity: .25;
+
+    pointer-events: none;
+}
+
+.memories-decoration img {
+
+    width: 240px;
+}
+
+/* =========================================================
+   WISHES SECTION
+========================================================= */
+
+.wishes-section {
+
+    padding: 140px 6%;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,244,248,.6),
+            rgba(255,255,255,.9)
+        );
+}
+
+.wishes-container {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 30px;
+}
+
+.wish-card {
+
+    position: relative;
+
+    padding: 45px;
+
+    border-radius: 30px;
+
+    background:
+        white;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.08);
+
+    transition: .4s ease;
+}
+
+.wish-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--gold),
+            var(--rose)
+        );
+}
+
+.wish-card:hover {
+
+    transform:
+        translateY(-10px);
+}
+
+.wish-card h3 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 2rem;
+
+    color: var(--gold);
+
+    margin-bottom: 20px;
+}
+
+.wish-card p {
+
+    line-height: 1.8;
+
+    color: var(--text-light);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .gallery-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .memories-container,
+    .wishes-container {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .about-container {
+
+        grid-template-columns: 1fr;
+
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .gallery-grid {
+
+        columns: 4 300px;
+
+        column-gap: 20px;
+
+}
+
+    .gallery-card {
+
+        display: inline-block;
+
+        width: 100%;
+
+        margin-bottom: 20px;
+}
+
+    .gallery-img {
+
+        width: 100%;
+
+        height: auto;
+
+        display: block;
+
+        object-fit: contain;
+}
+
+    .about,
+    .gallery-section,
+    .memories-section,
+    .wishes-section {
+
+        padding: 100px 5%;
+    }
+
+    .memory-card,
+    .wish-card {
+
+        padding: 35px 25px;
+    }
+
+    .memories-decoration {
+
+        display: none;
+    }
+}
+/* =========================================================
+   VERSION 3
+   PART 3
+   GIFT + MUSIC + FOOTER + LIGHTBOX
+========================================================= */
+
+/* =========================================================
+   GIFT SECTION
+========================================================= */
+
+.gift-section {
+
+    position: relative;
+
+    padding: 150px 6%;
+
+    overflow: hidden;
+}
+
+.gift-container {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 50px;
+}
+
+.gift-box-wrapper {
+
+    position: relative;
+
+    cursor: pointer;
+}
+
+.gift-box {
+
+    width: 620px;
+
+    transition:
+        transform .5s ease,
+        filter .5s ease;
+}
+
+.gift-box:hover {
+
+    transform:
+        scale(1.3);
+
+    filter:
+        drop-shadow(
+            0 25px 40px rgba(200,155,60,.25)
+        );
+}
+
+.gift-reveal {
+
+    width: 100%;
+
+    max-width: 850px;
+
+    display: none;
+
+    animation:
+        revealGift .8s ease;
+}
+
+.gift-reveal.active {
+
+    display: block;
+}
+
+.birthday-letter {
+
+    background: white;
+
+    border-radius: 35px;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.10);
+}
+
+.birthday-letter img {
+
+    width: 100%;
+
+    max-height: 500px;
+
+    object-fit: cover;
+}
+
+.birthday-letter h2 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(
+            2.5rem,
+            5vw,
+            4rem
+        );
+
+    color: var(--gold);
+
+    margin-top: 35px;
+}
+
+.birthday-letter p {
+
+    padding:
+        20px 50px 40px;
+
+    line-height: 1.9;
+
+    color: var(--text-light);
+}
+
+.gift-stars {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    padding-bottom: 40px;
+}
+
+.gift-stars img {
+
+    width: 40px;
+
+    animation:
+        sparkleRotate 6s linear infinite;
+}
+@media (max-width: 768px) {
+
+    .gift-stars img {
+
+        width: 28px;
+    }
+}
+
+.gift-balloon {
+
+    position: absolute;
+
+    top: 300px;
+    right: -20px;
+
+    width: 400px;
+
+    opacity: 1;
+
+    animation:
+        balloonFloat 5s ease-in-out infinite;
+}
+/* =========================================================
+   BIRTHDAY LETTER REVEAL
+========================================================= */
+
+.birthday-letter {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffdf8,
+            #fff7f9
+        );
+
+    border-radius: 35px;
+
+    padding: 60px;
+
+    text-align: center;
+
+    box-shadow:
+        0 30px 60px rgba(0,0,0,.12);
+
+    animation:
+        letterReveal 1.2s ease forwards;
+}
+
+.letter-seal {
+
+    font-size: 3rem;
+
+    margin-bottom: 20px;
+}
+
+.letter-title {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(2.5rem,5vw,4rem);
+
+    color: #c89b3c;
+
+    margin-bottom: 25px;
+}
+
+.letter-message {
+
+    min-height: 220px;
+
+    font-size: 1.15rem;
+
+    line-height: 2;
+
+    color: #555;
+
+    white-space: pre-line;
+
+    margin-bottom: 25px;
+}
+
+.letter-footer {
+
+    color: #777;
+
+    margin-bottom: 25px;
+}
+
+.letter-btn {
+
+    border: none;
+
+    padding: 14px 32px;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d4af37,
+            #f4d88b
+        );
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: .3s ease;
+}
+
+.letter-btn:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 30px rgba(212,175,55,.3);
+}
+
+/* =========================================================
+   MUSIC SECTION
+========================================================= */
+
+.music-section {
+
+    padding: 150px 6%;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,244,248,.6),
+            rgba(255,255,255,.9)
+        );
+}
+
+.music-card {
+
+    max-width: 700px;
+
+    margin: auto;
+
+    text-align: center;
+
+    background: white;
+
+    padding: 50px;
+
+    border-radius: 35px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.08);
+}
+
+.music-icon {
+
+    width: 120px;
+    height: 120px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(244,216,139,.25),
+            rgba(247,196,214,.25)
+        );
+
+    margin-bottom: 25px;
+}
+
+.music-icon img {
+
+    width: 200px;
+}
+
+.music-card h3 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 2.5rem;
+
+    color: var(--gold);
+
+    margin-bottom: 25px;
+}
+
+.music-card audio {
+
+    width: 100%;
+}
+#musicPrompt {
+
+    position: fixed;
+
+    bottom: 20px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: rgba(0,0,0,.8);
+
+    color: white;
+
+    padding: 12px 22px;
+
+    border-radius: 50px;
+
+    z-index: 99999;
+
+    font-size: .95rem;
+
+    display: none;
+}
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+
+    position: relative;
+
+    padding:
+        120px 20px 80px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff8fb,
+            #fff4f7
+        );
+}
+
+.footer-content img:first-child {
+
+    width: 200px;
+
+    margin-bottom: 20px;
+}
+
+.footer h2 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(
+            3rem,
+            6vw,
+            5rem
+        );
+
+    color: var(--gold);
+
+    margin-bottom: 15px;
+}
+
+.footer p {
+
+    color: var(--text-light);
+
+    margin-bottom: 30px;
+}
+
+.footer-stars {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+}
+
+.footer-stars img {
+
+    width: 60px;
+
+    animation:
+        sparkleRotate 8s linear infinite;
+}
+@media (max-width: 768px) {
+
+    .footer-stars img {
+
+        width: 35px;
+    }
+}
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,.92);
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99999;
+
+    padding: 30px;
+}
+
+.lightbox.active {
+
+    display: flex;
+}
+
+.lightbox img {
+
+    max-width: 95%;
+
+    max-height: 90vh;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.4);
+}
+
+.lightbox-close {
+
+    position: absolute;
+
+    top: 25px;
+    right: 35px;
+
+    color: white;
+
+    font-size: 3rem;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.lightbox-close:hover {
+
+    transform:
+        scale(1.1);
+}
+
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
+
+#hearts-container {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 999;
+}
+
+.floating-heart {
+
+    position: absolute;
+
+    pointer-events: none;
+
+    opacity: .95;
+
+    animation:
+        floatHeart linear forwards;
+}
+
+@keyframes floatHeart {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(0)
+            scale(.6)
+            rotate(0deg);
+    }
+
+    20% {
+
+        opacity: 1;
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translateY(-650px)
+            scale(1.4)
+            rotate(360deg);
+    }
+}
+
+/* =========================================================
+   FLOATING SPARKLES
+========================================================= */
+
+#sparkles-container {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 99;
+}
+
+.sparkle {
+
+    position: absolute;
+
+    width: 20px;
+
+    opacity: .9;
+
+    animation:
+        sparkleFloat 4s ease forwards;
+}
+
+@media (max-width: 768px) {
+
+    .sparkle {
+
+        width: 12px;
+    }
+}
+
+/* =========================================================
+   PREMIUM ANIMATIONS
+========================================================= */
+
+@keyframes revealGift {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(40px)
+            scale(.95);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+@keyframes sparkleRotate {
+
+    from {
+
+        transform:
+            rotate(0deg);
+    }
+
+    to {
+
+        transform:
+            rotate(360deg);
+    }
+}
+
+@keyframes floatHeart {
+
+    from {
+
+        transform:
+            translateY(0);
+
+        opacity: 1;
+    }
+
+    to {
+
+        transform:
+            translateY(-250px);
+
+        opacity: 0;
+    }
+}
+
+@keyframes sparkleFloat {
+
+    from {
+
+        transform:
+            translateY(0)
+            scale(.4);
+
+        opacity: 0;
+    }
+
+    50% {
+
+        opacity: 1;
+    }
+
+    to {
+
+        transform:
+            translateY(-80px)
+            scale(1);
+
+        opacity: 0;
+    }
+}
+
+/* =========================================================
+   NAVBAR SCROLL EFFECT
+========================================================= */
+
+.navbar.scrolled {
+
+    background:
+        rgba(255,255,255,.95);
+
+    backdrop-filter:
+        blur(30px);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.08);
+}
+
+/* =========================================================
+   MOBILE MENU PREPARATION
+========================================================= */
+
+.mobile-toggle {
+
+    display: none;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.mobile-toggle span {
+
+    display: block;
+
+    width: 25px;
+    height: 3px;
+
+    margin: 5px auto;
+
+    border-radius: 20px;
+
+    background: var(--gold);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .gift-box {
+
+        width: 260px;
+    }
+
+    .birthday-letter p {
+
+        padding:
+            20px 25px 35px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .gift-section,
+    .music-section {
+
+        padding: 100px 5%;
+    }
+
+    .gift-balloon {
+
+        width: 130px;
+    }
+
+    .music-card {
+
+        padding: 30px 20px;
+    }
+
+    .music-icon {
+
+        width: 90px;
+        height: 90px;
+    }
+
+    .music-icon img {
+
+        width: 50px;
+    }
+
+    .footer {
+
+        padding:
+            80px 20px 60px;
+    }
+
+    .footer-stars img {
+
+        width: 100px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .gift-box {
+
+        width: 220px;
+    }
+
+    .birthday-letter h2 {
+
+        padding:
+            0 15px;
+    }
+
+    .birthday-letter p {
+
+        font-size: .95rem;
+    }
+
+    .lightbox-close {
+
+        top: 15px;
+        right: 20px;
+
+        font-size: 2.5rem;
+    }
+}
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+.confetti-piece {
+
+    position: fixed;
+
+    top: -20px;
+
+    width: 12px;
+    height: 12px;
+
+    z-index: 9999;
+
+    animation:
+        confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+
+    from {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 1;
+    }
+
+    to {
+
+        transform:
+            translateY(120vh)
+            rotate(720deg);
+
+        opacity: 0;
+    }
+}
+/* =========================================================
+   SCROLL PROGRESS BAR
+========================================================= */
+
+#scrollProgress {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    height: 4px;
+
+    width: 0;
+
+    z-index: 999999;
+
+    background:
+        linear-gradient(
+            90deg,
+            #c89b3c,
+            #f4d88b,
+            #f7c4d6
+        );
+}
+
+/* =========================================================
+   IMAGE LOADED EFFECT
+========================================================= */
+
+img {
+
+    transition:
+        opacity .4s ease,
+        transform .4s ease;
+}
+
+img.loaded {
+
+    opacity: 1;
+}
+.gallery-grid {
+    display: grid !important;
+}
+
+.gallery-card {
+    overflow: hidden;
+    min-height: 250px;
+}
+
+.gallery-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+/* Large Tablets */
+@media (max-width: 1200px) {
+
+    .hero-container,
+    .about-container,
+    .memories-container,
+    .gift-container,
+    .footer-container {
+
+        gap: 40px;
+    }
+
+    .gallery-grid {
+        column-count: 3;
+    }
+
+    .hero-content {
+        margin-left: 80px;
+    }
+
+    .hero-content h1 {
+        font-size: 4rem;
+    }
+
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+
+    .hero-container,
+    .about-container,
+    .memories-container,
+    .gift-container {
+
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-image,
+    .about-image {
+        margin: auto;
+    }
+
+    .gallery-grid {
+        column-count: 2;
+    }
+
+    .hero-content {
+        margin-left: 40px;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .section-title h2 {
+        font-size: 3rem;
+    }
+
+    .navbar {
+        padding: 15px 25px;
+    }
+
+}
+
+/* Mobile */
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .hero-content {
+
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 0 25px;
+
+        text-align: center;
+    }
+
+    .hero-tag {
+
+        margin-bottom: 20px;
+    }
+
+    .hero-content p {
+
+        font-size: 1rem;
+    }
+
+    .hero-content h3 {
+
+        margin-left: auto;
+
+        margin-right: auto;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .hero {
+        padding: 140px 20px 80px;
+    }
+
+    .hero-content h1 {
+
+        font-size: 3rem;
+
+        line-height: 1.05;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .section-title h2 {
+        font-size: 2.4rem;
+    }
+
+    .gallery-grid {
+        column-count: 1;
+    }
+
+    .gallery-card {
+        margin-bottom: 15px;
+    }
+
+    .about-section,
+    .gallery-section,
+    .memories-section,
+    .gift-section,
+    .music-section {
+        padding: 80px 20px;
+    }
+
+    .footer {
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+}
+
+/* Small Mobile */
+
+@media (max-width: 576px) {
+
+    .hero-content h1 {
+
+        font-size: 2.4rem;
+    }
+
+    .section-title h2 {
+        font-size: 2rem;
+    }
+
+    .gallery-overlay h3 {
+        font-size: 1.4rem;
+    }
+
+    .hero-image img,
+    .about-image img {
+        border-radius: 20px;
+    }
+
+    .navbar {
+        border-radius: 20px;
+        padding: 12px 18px;
+    }
+
+}
+
+/* Extra Small Mobile */
+
+@media (max-width: 400px) {
+
+    .hero-content h1 {
+
+        font-size: 2rem;
+    }
+
+    .section-title h2 {
+        font-size: 1.7rem;
+    }
+
+    .gallery-overlay h3 {
+        font-size: 1.2rem;
+    }
+
+}
+/* Mobile Menu */
+
+.menu-toggle {
+
+    display: none;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    cursor: pointer;
+
+    z-index: 1001;
+}
+
+.menu-toggle span {
+
+    width: 28px;
+
+    height: 3px;
+
+    background: #d4a23d;
+
+    border-radius: 10px;
+
+    transition: .3s;
+}
+
+@media (max-width: 768px) {
+
+    .menu-toggle {
+
+        display: flex;
+    }
+
+    .nav-links {
+
+        position: fixed;
+
+        top: 90px;
+
+        right: -100%;
+
+        width: 280px;
+
+        height: auto;
+
+        background: rgba(255,255,255,.95);
+
+        backdrop-filter: blur(20px);
+
+        flex-direction: column;
+
+        padding: 30px;
+
+        gap: 20px;
+
+        border-radius: 25px;
+
+        box-shadow:
+            0 20px 50px rgba(0,0,0,.15);
+
+        transition: .4s ease;
+    }
+
+    .nav-links.active {
+
+        right: 20px;
+    }
+}
+/* Tablet */
+
+@media (max-width: 992px) {
+
+    .gallery-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .gallery-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .gallery-overlay h3 {
+
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+
+        width: 95%;
+
+        height: 65px;
+
+        padding: 0 18px;
+
+        border-radius: 18px;
+    }
+
+    .logo img {
+
+        width: 32px;
+
+        height: 32px;
+    }
+
+    .logo span {
+
+        font-size: 1rem;
+    }
+
+    .music-btn {
+
+        width: 42px;
+
+        height: 42px;
+    }
+
+    .music-btn img {
+
+        width: 22px;
+
+        height: 22px;
+    }
+
+    .nav-links {
+
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .hero {
+
+        min-height: auto;
+
+        padding-top: 120px;
+
+        text-align: center;
+    }
+
+    .hero-content {
+
+        width: 100%;
+    }
+
+    .hero-content h1 {
+
+        font-size: 3rem;
+
+        line-height: 1.1;
+    }
+
+    .hero-content p {
+
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .hero-balloons {
+
+        width: 90px;
+
+        top: 140px;
+
+        right: -10px;
+    }
+
+    .gift-balloon {
+
+        width: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .floating-ribbon {
+
+        width: 90px;
+
+        opacity: .6;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .floating-heart {
+
+        width: 28px !important;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .gallery-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .gallery-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .gift-box {
+
+        width: 180px;
+    }
+
+    .birthday-letter {
+
+        padding: 25px;
+    }
+
+    .letter-title {
+
+        font-size: 2rem;
+    }
+
+    .letter-message {
+
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    #loader {
+
+        background-size: cover;
+
+        background-position: center;
+    }
+
+    #loaderText {
+
+        font-size: 1rem;
+    }
+}
+
+/* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
+
+.mobile-actions {
+
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+
+        height: 70px;
+
+        padding: 0 15px;
+
+        border-radius: 20px;
+    }
+
+    .nav-links {
+
+        display: none;
+    }
+
+    .menu-toggle {
+
+        display: none;
+    }
+
+    .mobile-actions {
+
+        display: flex;
+
+        gap: 8px;
+
+        align-items: center;
+    }
+
+    .mobile-btn {
+
+        text-decoration: none;
+
+        padding: 10px 14px;
+
+        border-radius: 50px;
+
+        font-size: .8rem;
+
+        font-weight: 600;
+
+        white-space: nowrap;
+    }
+
+    .memories-btn {
+
+        background:
+            linear-gradient(
+                135deg,
+                #d4af37,
+                #f4d88b
+            );
+
+        color: white;
+    }
+
+    .surprise-btn {
+
+        background: white;
+
+        color: #333;
+
+        border:
+            1px solid rgba(0,0,0,.1);
+    }
+
+    .logo span {
+
+        display: none;
+    }
+
+    .logo img {
+
+        width: 32px;
+
+        height: 32px;
+    }
+
+    .music-btn {
+
+        width: 42px;
+
+        height: 42px;
+    }
+
+    .music-btn img {
+
+        width: 22px;
+
+        height: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .mobile-btn {
+
+        padding: 8px 10px;
+
+        font-size: .72rem;
+    }
+}
