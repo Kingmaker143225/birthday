@@ -817,7 +817,7 @@ body {
     width: 400px;
 
     animation:
-        balloonFloat 6s ease-in-out infinite;
+        balloonFloat 3s ease-in-out infinite;
 }
 
 @keyframes balloonFloat {
@@ -1118,7 +1118,7 @@ body {
 
     text-align: center;
 
-    transition: .4s ease;
+    transition: .2s ease;
 
     box-shadow:
         0 15px 35px rgba(0,0,0,.06);
@@ -1243,7 +1243,7 @@ body {
     box-shadow:
         0 15px 40px rgba(0,0,0,.08);
 
-    transition: .4s ease;
+    transition: .2s ease;
 }
 
 .wish-card::before {
@@ -1515,7 +1515,7 @@ body {
     width: 40px;
 
     animation:
-        sparkleRotate 6s linear infinite;
+        sparkleRotate 3s linear infinite;
 }
 @media (max-width: 768px) {
 
@@ -1963,7 +1963,7 @@ body {
     opacity: .9;
 
     animation:
-        sparkleFloat 4s ease forwards;
+        sparkleFloat 2s ease forwards;
 }
 
 @media (max-width: 768px) {
@@ -2264,8 +2264,8 @@ body {
 img {
 
     transition:
-        opacity .4s ease,
-        transform .4s ease;
+        opacity .2s ease,
+        transform .2s ease;
 }
 
 img.loaded {
@@ -2554,7 +2554,7 @@ img.loaded {
         box-shadow:
             0 20px 50px rgba(0,0,0,.15);
 
-        transition: .4s ease;
+        transition: .2s ease;
     }
 
     .nav-links.active {
