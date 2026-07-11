@@ -1153,7 +1153,7 @@ function startLetterTyping() {
 
     const message = `
 
-Happy Birthday, kiran. 
+Happy Birthday, rekha. 
 
 Today, we celebrate the incredible gift of you and the beautiful light you bring into this world.
 
@@ -1163,7 +1163,7 @@ May this year wrap you in endless peace, comfort you in moments of doubt, and br
 
 Thank you for being such a beautiful inspiration and a constant anchor of love. Your journey is a magnificent story, and the best chapters are still waiting to be written.
 
-May all your quiet wishes come true today. Happy Birthday, dearest kiran.❤️
+May all your quiet wishes come true today. Happy Birthday, dearest rekha.❤️
 
 `;
 
@@ -2019,7 +2019,7 @@ const App = (() => {
         ProgressModule.init();
 
         console.log(
-            "%c🎂 Happy Birthday kiran Website Loaded Successfully",
+            "%c🎂 Happy Birthday rekha Website Loaded Successfully",
             "color:#c89b3c;font-size:14px;font-weight:bold;"
         );
     }
